@@ -145,5 +145,7 @@ THis will handle person not found or internal server errors and generate appropr
 
 ## TODO improvements
 
-pagination for get all persons instead of all at once with pagination jpa respository.
-Localization of all  messages through ResourceManager.
+##### pagination for get all persons instead of all at once with pagination jpa respository.
+##### Localization of all  messages through ResourceManager.
+##### Use swagger to generate API classes ( partially done but not completed)
+
