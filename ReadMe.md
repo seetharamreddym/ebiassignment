@@ -89,6 +89,46 @@ request payload
 }
 
 
+### Update a person 
+
+URL :  http://localhost:8080/persons  
+Method: POST
+
+request payload
+
+{   "id" : "1"
+	"first_name":"seetharam",
+	"last_name": "reddy",
+	"age":"38",
+	"favourite_color":"blu2",
+	"hobby": ["music", "reading"]
+
+}
+
+
+## Get all persons 
+
+URL:  http://localhost:8080/persons
+
+Method: GET
+
+## Get a person by id
+
+We need pass  user id in url
+
+Method: GET
+
+http://localhost:8080/persons/1
+
+## Delete a person
+
+We need pass  user id in url
+
+Method: DELETE
+
+http://localhost:8080/persons/1
+
+
 ### how to install 
 
 $ mvn clean install
@@ -97,6 +137,10 @@ $ mvn clean install
 
 $ java -jar target\person-0.0.1-SNAPSHOT.jar
 
+
+# Global exception handler
+
+THis will handle person not found or internal server errors and generate appropriate error response.
 
 
 ## TODO improvements
