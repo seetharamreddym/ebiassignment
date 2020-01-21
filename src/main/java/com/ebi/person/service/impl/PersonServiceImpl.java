@@ -6,11 +6,14 @@ import static com.ebi.person.util.MarshallingUtil.getPersons;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.ebi.person.entity.PersonEntity;
+import com.ebi.person.exception.ApplicationException;
 import com.ebi.person.model.Person;
 import com.ebi.person.model.Persons;
 import com.ebi.person.repository.PersonRepository;
@@ -43,14 +46,21 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public void deletePerson(Long id) {
-
-		personRepository.delete(personRepository.findById(id).get());
+		Optional<PersonEntity> personEntity = personRepository.findById(id);
+		if(!personEntity.isPresent()) {
+			throw new ApplicationException(HttpStatus.NOT_FOUND, "Getting person details for delete", "person not found with given id:"+id);
+		}
+		personRepository.delete(personEntity.get());
 
 	}
 
 	@Override
 	public Person getPerson(Long id) {
-		return convertToPersonPOJO(personRepository.findById(id).get());
+		Optional<PersonEntity> personEntity = personRepository.findById(id);
+		if(!personEntity.isPresent()) {
+			throw new ApplicationException(HttpStatus.NOT_FOUND, "Getting person details", "person not found with given id:"+id);
+		}
+		return convertToPersonPOJO(personEntity.get());
 	}
 
 	@Override
