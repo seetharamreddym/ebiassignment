@@ -78,51 +78,7 @@ parameters:
     required: true
     description: "A unique identifier for a resource"
     type: string
-  Query:
-    name: q
-    in: query
-    description: The search query criteria specified in the SCIM filter syntax.
-    required: false
-    type: string
-
-  Fields:
-    name: fields
-    in: query
-    description: A comma separated list of fields forming the projection (the fields to be returned). For example, id,name.
-    required: false
-    type: string
-
-  OrderBy:
-    name: orderBy
-    in: query
-    description: The sorting order criteria.
-    required: false
-    type: string
-
-  Limit:
-    name: limit
-    in: query
-    description: The number of records to be returned.
-    required: false
-    type: integer
-    format: int32
-
-  Offset:
-    name: offset
-    in: query
-    description: The number of records skip from the response.
-    required: false
-    type: integer
-    format: int32
-    default: 0
-
-  TotalResults:
-    name: totalResults
-    in: query
-    description: Whether or not the count of total results is returned in the response.
-    required: false
-    type: boolean
-    default: false
+ 
     
  
 
@@ -147,37 +103,17 @@ definitions:
       favourite_color:
         type: string        
         description: The person favourite color.
-      links:
+      hobby:
         type: array
         description: |
-          Links to related entities.
+          Person hobbies.
         items:
-          $ref: '#/definitions/Link' 
-
-
-
-  
-  Link:
+         type: string
+  Persons:
     type: object
-    description: Link
     properties:
-      id:
-        type: string
-        description: The link's ID.
-      rel:
-        type: string
-        description: The link relationship, as defined by the [IANA link relationship registry](http://www.iana.org/assignments/link-relations/link-relations.xhtml).
-      href:
-        type: string
-        description: The URL of the link.
-      name:
-        type: string
-        description: The link name.
-      notes:
-        type: string
-        description: The link description.
-      mimeType:
-        type: string
-        description: The MIME type.
-        
-  
+      person:
+        type: array
+        items:
+          $ref: '#/definitions/Person'
+

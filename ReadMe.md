@@ -5,7 +5,7 @@
 All these APIs can be validated through react based UI project https://github.com/seetharamreddym/ebiassignmentui
 
 ### Prerequisites
-Maven <br/>
+Maven 3.6  <br/>
 Java8
 
 ## API details
@@ -19,8 +19,8 @@ All persons data maintained in H2 in-memory database, So on application restart 
 
 ## Security details
 
-Implemented  basic  security in the form of username and password for all API access, with this application is authenticating/authorizing  the user. 
-I have hard coded user to demonstrate the security feature.
+Implemented  basic  security in the form of username and password for all API access. 
+I have hard coded user details in the code to demonstrate the security feature, this can be extended to use persistence for user and their roles.
 To test any API method user need to supply authentication/authorization information in the form of username and password.
 
 Username:  admin <br/>
@@ -36,7 +36,7 @@ For all operations we need provide content-type header and authorization informa
 
 content-type : application/json
 
-### Authorization:
+### Authentication/Authorization:
 
 Type : Basic Auth  
 
@@ -60,7 +60,7 @@ request payload
 }
 
 
-### Insert list of persons
+### Insert list of persons in bulk mode. batch size is configurable in application.properties
  
 
 URL :  http://localhost:8080/persons/bulk  
