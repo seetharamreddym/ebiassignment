@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ebi.person.exception.ApplicationException;
 import com.ebi.person.model.Person;
 import com.ebi.person.model.Persons;
 import com.ebi.person.service.PersonService;
@@ -29,7 +31,7 @@ class PersonApplicationTests {
 	private PersonService service;
 
 	@Test
-	public void testPersonService() {
+	public void testAddAndUpdatePerson() {
 
 		// insert
 		Person per1 = new Person();
@@ -40,7 +42,7 @@ class PersonApplicationTests {
 		assertNotNull(insertedPerson1.getId());
 		assertNull(insertedPerson1.getLast_name());
 		assertEquals(1, insertedPerson1.getHobby().size());
-
+	
 		// update
 		insertedPerson1.setLast_name("kumar");
 		insertedPerson1.getHobby().add("music");
@@ -48,7 +50,10 @@ class PersonApplicationTests {
 		assertEquals(insertedPerson1.getId(), updatedPerson1.getId());
 		assertNotNull(updatedPerson1.getLast_name());
 		assertEquals(2, updatedPerson1.getHobby().size());
-
+}
+	
+	@Test
+	public void testGetAllPersons() {
 		Person per2 = new Person();
 		per2.setAge(36);
 		per2.setFirst_name("shylesh");
@@ -63,12 +68,28 @@ class PersonApplicationTests {
 		// get all
 		Persons allPersons = service.getAllPersons();
 		assertEquals(3, allPersons.getPerson().size());
+		
+		
+}
+	
+	@Test
+	public void testDeletePerson() {
+		Person per7 = new Person();
+		per7.setAge(30);
+		per7.setFirst_name("john");
+		per7.getHobby().add("music");
+		
+		Person insertPerson = service.insertPerson(per7);
+		service.deletePerson(insertPerson.getId());
+		
+		 Assertions.assertThrows(ApplicationException.class, () -> {
+			 service.getPerson(insertPerson.getId());;
+			  });
+	
 
-		// delete
-		service.deletePerson(insertedPerson1.getId());
-		allPersons = service.getAllPersons();
-		assertEquals(2, allPersons.getPerson().size());
-
+	}
+		@Test
+		public void testBulkInsertPersons() {
 		// bulk insert
 
 		Person per4 = new Person();
@@ -92,8 +113,8 @@ class PersonApplicationTests {
 		service.insertPersons(all);
 
 		// after bulk insert validate total
-		allPersons = service.getAllPersons();
-		assertEquals(5, allPersons.getPerson().size());
+		Persons allPersons = service.getAllPersons();
+		assertEquals(6, allPersons.getPerson().size());
 
 	}
 

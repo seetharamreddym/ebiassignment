@@ -10,20 +10,21 @@ Java8
 
 ## API details
 
-person spring boot application exposes a singel REST Endpoint for performing insert, update, delete and get operations on persons.
-This REST API also exposes one end point for bulk insert of multiple persons at once in batch mode.
+person spring boot application exposes a single REST endpoint for performing insert, update, delete and get operations on persons.
+This REST API also exposes one method for bulk insert of multiple persons at once in batch mode.
 
-All person data maintained in the H2 in-memory database, So when we restart application everything will be lost.
+All persons data maintained in H2 in-memory database, So on application restart all data will be removed from DB.
 
-/persons is the end point which will handle all operations on person.
+/persons is the end point which will handle all operations.
 
 ## Security details
 
-Implemented spring basic authentication/autherization via login password, for the time being I have hard coded user.
-When we are trying to test any API method need to supply authentication/authorization information in the form of username and password.
+Implemented  basic  security in the form of username and password for all API access, with this application is authenticating/authorizing  the user. 
+I have hard coded user to demonstrate the security feature.
+To test any API method user need to supply authentication/authorization information in the form of username and password.
 
 Username:  admin <br/>
-password:  admin123
+Password:  admin123
 
 
 
@@ -39,7 +40,7 @@ content-type : application/json
 
 Type : Basic Auth  
 
-Username:  admin
+Username:  admin  <br/>
 password:  admin123
 
 ### Insert a person 
@@ -81,12 +82,12 @@ request payload
         },
         {
             "id": 3,
-            "first_name": "vandana",
+            "first_name": "mohan",
             "last_name": "reddy",
-            "age": 38,
+            "age": 40,
             "favourite_color": "black",
             "hobby": [
-                "music"
+                "reading"
             ]
         }
     ]
@@ -101,10 +102,10 @@ Method: POST
 request payload
 
 {   "id" : "1"
-	"first_name":"seetharam",
-	"last_name": "reddy",
+	"first_name":"vamsi",
+	"last_name": "raghava",
 	"age":"38",
-	"favourite_color":"blu2",
+	"favourite_color":"blue",
 	"hobby": ["music", "reading"]
 
 }
@@ -145,7 +146,7 @@ $ java -jar target\person-0.0.1-SNAPSHOT.jar
 
 # Global exception handler
 
-THis will handle person not found or internal server errors and generate appropriate error response.
+This will handle person not found or internal server errors and generate appropriate error response.
 
 
 ## TODO improvements
@@ -153,4 +154,5 @@ THis will handle person not found or internal server errors and generate appropr
 ##### pagination for get all persons instead of all at once with pagination jpa respository.
 ##### Localization of all  messages through ResourceManager.
 ##### Use swagger to generate API classes ( partially done but not completed)
+#### Combine API and UI projects in single project as hybrid application
 
