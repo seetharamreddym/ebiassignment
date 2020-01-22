@@ -8,6 +8,22 @@ All these APIs can be validated through react based UI project https://github.co
 Maven 3.6  <br/>
 Java8
 
+
+### how to install 
+
+$ git clone https://github.com/seetharamreddym/ebiassignment.git
+
+$ cd ebiassignment
+
+$ mvn clean install
+
+## To run the person spring boot application
+
+$ java -jar target\person-0.0.1-SNAPSHOT.jar
+
+
+
+
 ## API details
 
 person spring boot application exposes a single REST endpoint for performing insert, update, delete and get operations on persons.
@@ -132,16 +148,6 @@ We need pass  user id in url
 Method: DELETE
 
 http://localhost:8080/persons/1
-
-
-### how to install 
-
-$ mvn clean install
-
-## To run the person spring boot application
-
-$ java -jar target\person-0.0.1-SNAPSHOT.jar
-
 
 
 # Global exception handler
