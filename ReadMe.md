@@ -1,7 +1,11 @@
 # Person REST API
 
+## UI for validating API operations
+
+All these APIs can be validated through react based UI project https://github.com/seetharamreddym/ebiassignmentui
+
 ### Prerequisites
-Maven
+Maven <br/>
 Java8
 
 ## API details
@@ -18,14 +22,14 @@ All person data maintained in the H2 in-memory database, So when we restart appl
 Implemented spring basic authentication/autherization via login password, for the time being I have hard coded user.
 When we are trying to test any API method need to supply authentication/authorization information in the form of username and password.
 
-Username:  admin
+Username:  admin <br/>
 password:  admin123
-Role    :  ADMIN
+
 
 
 ## API operations  
 
-For all operations we need provide content-type header and autharization infromation.
+For all operations we need provide content-type header and authorization information.
 
 ### Headers:
 
@@ -136,6 +140,7 @@ $ mvn clean install
 ## To run the person spring boot application
 
 $ java -jar target\person-0.0.1-SNAPSHOT.jar
+
 
 
 # Global exception handler
